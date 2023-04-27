@@ -9,7 +9,7 @@
 
 $numCartao = '2323 2323 2323 2323';
 
-abreEnfiaFecha(maskNumbers($numCartao));
+// echo maskNumbers($numCartao);
 
 function maskNumbers(string $cardNumbers) {
 
@@ -20,13 +20,24 @@ function maskNumbers(string $cardNumbers) {
         for($i = 1; $i < (count($arrayCardsNumbers)-4); $i++){
             $arrayCardsNumbers[$i] = '*';
         }
-        return $arrayCardsNumbers;
+        return formatedString(implode('',$arrayCardsNumbers));
     }else{
         echo validateCardNumber($removedSpacesString);
     }
 }
 
+echo maskNumbers($numCartao);
 
+function formatedString($str){
+
+    $array = [];
+
+    for($i=0; $i < strlen($str); $i+=4){
+        $array[] = substr($str,$i,4);
+    }
+    return implode(' ',$array);
+
+}
 
 function validateCardNumber(string $cardNumbers){
     if($cardNumbers === ''){
