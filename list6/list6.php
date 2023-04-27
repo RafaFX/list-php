@@ -16,27 +16,23 @@ function maskNumbers(string $cardNumbers) {
     $removedSpacesString = removeSpaces($cardNumbers);
 
     if(validateCardNumber($removedSpacesString)){
-        $arrayCardsNumbers = str_split($removedSpacesString);
-        for($i = 1; $i < (count($arrayCardsNumbers)-4); $i++){
-            $arrayCardsNumbers[$i] = '*';
+        $arrayCardNumbers = str_split($removedSpacesString);
+        for($i = 1; $i < (count($arrayCardNumbers)-4); $i++){
+            $arrayCardNumbers[$i] = "【 ͡❛ ͜ʖ ͡❛】 "  ;
         }
-        return formatedString(implode('',$arrayCardsNumbers));
+        return formatedString($arrayCardNumbers);
     }else{
         echo validateCardNumber($removedSpacesString);
     }
 }
 
-echo maskNumbers($numCartao);
+print_r(maskNumbers($numCartao));
 
-function formatedString($str){
-
-    $array = [];
-
-    for($i=0; $i < strlen($str); $i+=4){
-        $array[] = substr($str,$i,4);
+function formatedString($array){
+    for($i=4; $i < count($array); $i+=5){
+        array_splice($array,$i,0,' - ');
     }
     return implode(' ',$array);
-
 }
 
 function validateCardNumber(string $cardNumbers){
