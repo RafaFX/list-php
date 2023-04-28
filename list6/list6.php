@@ -7,7 +7,7 @@
 // • Não mascarar se a entrada for menor que 6 (quantidade de caracteres)
 // • Caso nada tenha sido emputado, retorne vazio “”
 
-$numCartao = '2323 2323 2323 2323';
+$numCartao = '';
 
 // echo maskNumbers($numCartao);
 

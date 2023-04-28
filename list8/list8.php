@@ -9,22 +9,25 @@
 
 $array = [1, 8, 13, 11, 1, 3, -2, -6, 5];
 
-function recursiveFor($array,&$arraySix=[], $n = 0, $k = 0){
+function recursiveFor($array, $n = 0, $k = 0,$arraySix=[]){
     if ($k >= count($array)) {
-        recursiveFor($array,$arraySix, ++$n);
+        return recursiveFor($array,++$n,0,$arraySix);
     } else if ($n < count($array) - 1) {
-        getAddedEqualsToSix($array[$n], $array[$k],$arraySix);
-        recursiveFor($array,$arraySix, $n, ++$k);
+        $arraySix = getAddedEqualsToSix($array[$n], $array[$k],$arraySix);
+        return recursiveFor($array, $n, ++$k,$arraySix);
     }
     return $arraySix;
+
 };
 
-function getAddedEqualsToSix($n, $k,&$arraySix){
+
+function getAddedEqualsToSix($n, $k,$arraySix){
     if ($n + $k === 6) {
         $array= [$n,$k];
         sort($array);
         array_push($arraySix,$array);
     }
+    return $arraySix;
 }
 
 echo json_encode(recursiveFor($array)); 
