@@ -9,27 +9,32 @@
 
 $array = [1, 8, 13, 11, 1, 3, -2, -6, 5];
 
-function recursiveFor($array, $n = 0, $k = 0,$arraySix=[]){
+function recursiveFor($array, $n = 0, $k = 0, $arraySix = [])
+{
     if ($k >= count($array)) {
-        return recursiveFor($array,++$n,0,$arraySix);
+        return recursiveFor($array, ++$n, 0, $arraySix);
     } else if ($n < count($array) - 1) {
-        $arraySix = getAddedEqualsToSix($array[$n], $array[$k],$arraySix);
-        return recursiveFor($array, $n, ++$k,$arraySix);
-    }
-    return $arraySix;
-
-};
-
-
-function getAddedEqualsToSix($n, $k,$arraySix){
-    if ($n + $k === 6) {
-        $array= [$n,$k];
-        sort($array);
-        array_push($arraySix,$array);
+        if ($array[$n] + $array[$k] === 6) {
+            //array de strings filtradas
+            $arraySix = getAddedEqualsToSix($array[$n], $array[$k], $arraySix);
+        }
+        return recursiveFor($array, $n, ++$k, $arraySix);
     }
     return $arraySix;
 }
+;
 
-echo json_encode(recursiveFor($array)); 
+function getAddedEqualsToSix($n, $k, $arraySix)
+{
+    $array = [$n, $k];
+    sort($array);
+    // $arraySix[$array[0]] = $array[1];
+    $result = ' '.implode(' + ', $array).' = 6 ';
+    array_push($arraySix, $result);
+    $arraySix = array_unique($arraySix);
+    return $arraySix;
+}
+
+echo json_encode(recursiveFor($array));
 
 ?>
