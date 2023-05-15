@@ -7,45 +7,44 @@
 // • Não mascarar se a entrada for menor que 6 (quantidade de caracteres)
 // • Caso nada tenha sido emputado, retorne vazio “”
 
-$numCartao = '';
+//$numCartao = '1234567845675678';
 
 // echo maskNumbers($numCartao);
 
-function maskNumbers(string $cardNumbers) {
-
+function maskNumbers(string $cardNumbers):string
+{
     $removedSpacesString = removeSpaces($cardNumbers);
 
-    if(validateCardNumber($removedSpacesString)){
+    if (validateCardNumber($removedSpacesString) === true) {
         $arrayCardNumbers = str_split($removedSpacesString);
-        for($i = 1; $i < (count($arrayCardNumbers)-4); $i++){
-            $arrayCardNumbers[$i] = "【 ͡❛ ͜ʖ ͡❛】 "  ;
+        for ($i = 1; $i < (count($arrayCardNumbers) - 4); $i++) {
+            $arrayCardNumbers[$i] = "*";
         }
         return formatedString($arrayCardNumbers);
-    }else{
-        echo validateCardNumber($removedSpacesString);
     }
+    return $removedSpacesString;
 }
 
-print_r(maskNumbers($numCartao));
-
-function formatedString($array){
-    for($i=4; $i < count($array); $i+=5){
-        array_splice($array,$i,0,' - ');
+function formatedString(array $array):string
+{
+    for ($i = 4; $i < count($array); $i += 5) {
+        array_splice($array, $i, 0, ' - ');
     }
-    return implode(' ',$array);
+    return implode(' ', $array);
 }
 
-function validateCardNumber(string $cardNumbers){
-    if($cardNumbers === ''){
-        return '';
-    }else if(strlen($cardNumbers) < 6 ){
-        return $cardNumbers;
-    }else {
-        return true;
+function validateCardNumber(string $cardNumbers):bool
+{
+    if ($cardNumbers === '') {
+        return false;
     }
+    if (strlen($cardNumbers) < 6) {
+        return false;
+    }
+    return true;
 }
 
-function removeSpaces (string $cardNumbers){
-    return str_replace(' ','',$cardNumbers);
-};
-
+function removeSpaces(string $cardNumbers):string
+{
+    return str_replace(' ', '', $cardNumbers);
+}

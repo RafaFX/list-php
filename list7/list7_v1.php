@@ -5,25 +5,20 @@
 // Input: array(5, 3, 1, 15)
 // Output: array(15, 1, 3, 5)
 
+//$array = [5, 3, 1, 15, 2, 4];
 
-$array = [5, 3, 1, 15, 2, 4];
 
-$indexPositive = 0;
-
-for($i= count($array)-1; $i > $indexPositive; $i--){
-        $supplus = $array[$indexPositive]; //5
-        $supsub = $array[$i];   //15
-        $array[$i] = $supplus; // 4[5]
-        $array[$indexPositive] = $supsub; //0[15]
-        $indexPositive++;
+function invertArray(array $array, int $indexPositive = 0): array
+{
+        for ($i = count($array) - 1; $i > $indexPositive; $i--) {
+                $temp = $array[$i];
+                $array[$i] = $array[$indexPositive];
+                $array[$indexPositive] = $temp;
+                $indexPositive++;
+        }
+        return $array;
 }
-
-print_r($array);
-
+;
 
 
-
-
-
-
-
+//print_r($array);

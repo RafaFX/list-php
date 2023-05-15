@@ -9,7 +9,7 @@
 $array = [4, 5, 4, 5, 2, 2, 3, 3, 3, 2, 4, 4];
 
 
-function getUnpaired($array) {
+function getUnpaired(array $array):array {
     $a = array_fill_keys($array, 0);
 
     foreach($array as $value){
@@ -23,8 +23,9 @@ function getUnpaired($array) {
             array_push($arrayFinal,$key);
         }
     }
+    return $arrayFinal;
 }
 
 
 
-print_r(getUnpaired($array));
+//print_r(getUnpaired($array));
