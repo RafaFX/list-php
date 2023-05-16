@@ -33,6 +33,9 @@ function formatedString(array $array):string
     return implode(' ', $array);
 }
 
+print_r(formatedString([1,2,3,4,5,6,7,8]));
+
+
 function validateCardNumber(string $cardNumbers):bool
 {
     if ($cardNumbers === '') {

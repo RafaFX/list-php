@@ -9,14 +9,14 @@
 
 $array = [1, 8, 13, 11, 1, 3, -2, -6, 5];
 
-function recursiveFor($array, $n = 0, $k = 0, $arraySix = [])
+function recursiveFor(array $array, int $n = 0, int $k = 0, array $arraySix = []):array
 {
     if ($k >= count($array)) {
         return recursiveFor($array, ++$n, 0, $arraySix);
     } else if ($n < count($array) - 1) {
         if ($array[$n] + $array[$k] === 6) {
             //array de strings filtradas
-            $arraySix = getAddedEqualsToSix($array[$n], $array[$k], $arraySix);
+            $arraySix = getFormatedArray($array[$n], $array[$k], $arraySix);
         }
         return recursiveFor($array, $n, ++$k, $arraySix);
     }
@@ -24,7 +24,7 @@ function recursiveFor($array, $n = 0, $k = 0, $arraySix = [])
 }
 ;
 
-function getAddedEqualsToSix($n, $k, $arraySix)
+function getFormatedArray(int $n, int $k, array $arraySix):array 
 {
     $array = [$n, $k];
     sort($array);
@@ -32,9 +32,10 @@ function getAddedEqualsToSix($n, $k, $arraySix)
     $result = ' '.implode(' + ', $array).' = 6 ';
     array_push($arraySix, $result);
     $arraySix = array_unique($arraySix);
+    print_r($arraySix);
     return $arraySix;
 }
 
-echo json_encode(recursiveFor($array));
+getFormatedArray(2,1,[]);
 
 ?>

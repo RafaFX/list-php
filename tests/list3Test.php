@@ -6,7 +6,7 @@ require_once __DIR__ . '/../list3/list3.php';
 
 class List3Test extends TestCase
 {
-    function testList3 ()
+    function testGetNumberOfCaracteres()
     {
 
         $tests = [
@@ -30,6 +30,33 @@ class List3Test extends TestCase
 
         foreach ($tests as $test) {
             $this->assertEquals(getNumberOfCaracteres($test[0]), $test[1]);
+        }
+    }
+
+    function testRemoveAccentuation()
+    {
+
+        $tests = [
+            [
+                'Exercícios',
+                'Exercicios'
+            ],
+            [
+                'Concluída',
+                'Concluida'
+            ],
+            [
+                '',
+                ''
+            ],
+            [
+                ' ',
+                ' '
+            ]
+        ];
+
+        foreach ($tests as $test) {
+            $this->assertEquals(removeAccentuation($test[0]), $test[1]);
         }
     }
 }

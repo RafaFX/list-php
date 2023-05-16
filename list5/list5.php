@@ -13,14 +13,14 @@ function isPalindrome(string $text):bool{
         return false;
     }
 
-    $textWithoutAccentuation = removeAccent($text);
+    $textWithoutAccentuation = removeAccentuation($text);
 
     $textUpperCase = strtoupper($textWithoutAccentuation);
 
     return $textUpperCase === strrev($textUpperCase);
 }
 
-function removeAccent(string $str):string{
+function removeAccentuationString(string $str):string{
     $withAccentuation = [ 'à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ü', 'ú', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'O', 'Ù', 'Ü', 'Ú'];
 
     $withoutAccentuation = ['a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U'];

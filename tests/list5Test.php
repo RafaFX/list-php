@@ -32,4 +32,31 @@ class List5Test extends TestCase
             $this->assertEquals(isPalindrome($test[0]), $test[1]);
         }
     }
+
+    function testList5RemoveAccentuation()
+    {
+
+        $tests = [
+            [
+                'Exercícios',
+                'Exercicios'
+            ],
+            [
+                'Concluída',
+                'Concluida'
+            ],
+            [
+                '',
+                ''
+            ],
+            [
+                ' ',
+                ' '
+            ]
+        ];
+
+        foreach ($tests as $test) {
+            $this->assertEquals(removeAccentuationString($test[0]), $test[1]);
+        }
+    }
 }

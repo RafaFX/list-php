@@ -30,4 +30,5 @@ function getArrayWithCountedValues(array $array):array
     return $a;
 }
 
+
 //print_r("A moda é: ".getMode($array). PHP_EOL);
